@@ -13,12 +13,15 @@ import static com.codeborne.selenide.Selenide.*;
     public class CardDeliveryTest {
         LocalDate date = LocalDate.now();
 
-        @Test
 
+        @Test
         void shouldRequest(){
+            LocalDate date = LocalDate.now();
+            date = date.plusDays(3);
+
             open( "http://localhost:9999");
-            $("[data-test-id=city] input").setValue("Хабаровск");
-            $(date.format(DateTimeFormatter.ofPattern("19::20::2020")));
+            $("[data-test-id=city] input").setValue("Казань");
+            $("[data-test-id=date] input").setValue(date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")));
             $("[data-test-id=name] input").setValue("Олегов Олег");
             $("[data-test-id=phone] input").setValue("+79999992221");
             $("[data-test-id=agreement]").click();
