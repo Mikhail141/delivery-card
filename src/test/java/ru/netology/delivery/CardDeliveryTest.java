@@ -1,4 +1,5 @@
 package ru.netology.delivery;
+import com.codeborne.selenide.Condition;
 import org.junit.jupiter.api.Test;
 
 
@@ -23,7 +24,6 @@ public class CardDeliveryTest {
         $("[data-test-id=phone] input").setValue("+79999992221");
         $("[data-test-id=agreement]").click();
         $$("button").find(exactText("Забронировать")).click();
-        $(withText("Успешно!")).waitUntil(visible, 15000);
-
+        $("[data-test-id=notification]").waitUntil(Condition.visible, 15000).shouldHave(exactText("Успешно! Встреча успешно забронирована на "));
     }
 }
